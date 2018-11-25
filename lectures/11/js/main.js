@@ -3,12 +3,12 @@
 //============================================
 
 
-/*var todos = [];
-function add() {
-    var task = document.getElementById("task").value;
-    todos.push(task);
-    document.getElementById('todos').innerText = todos;
-}*/
+// var todos = [];
+// function add() {
+//     var task = document.getElementById("task").value;
+//     todos.push(task);
+//     document.getElementById('todos').innerText = todos;
+// }
 
 
 //============================================
@@ -23,7 +23,6 @@ function add() {
     document.getElementById('task').value = '';
     show();
 }
-
 function show() {
     var ul = document.createElement('ul');
     ul.classList.add("list-group");
@@ -42,49 +41,49 @@ function show() {
 //============================================
 
 
-/*
-function getTodos() {
-    var todos = [];
-    var todos_str = localStorage.getItem('todo');
-    if(todos_str !== null)
-        todos = JSON.parse(todos_str);
-    return todos;
-}
-
-function add() {
-    var task = document.getElementById('task').value;
-    if(task.trim() == ''){
-        document.getElementById('message').style.display = 'block';
-        return false;
-    } else {
-        document.getElementById('message').style.display = 'none';
-    }
-    var todos = getTodos();
-    todos.push({task: task});
-    document.getElementById('task').value = '';
-    localStorage.setItem('todo',JSON.stringify(todos));
-    show();
-}
-
-
-function show() {
-    document.getElementById('todos').innerText = '';
-    var todos = getTodos();
-    var ul = document.createElement('ul');
-    ul.classList.add("list-group");
-    for(var i=0; i<todos.length; i++){
-        var li = document.createElement('li');
-        li.innerHTML  = '<li>' + todos[i].task + '</li>' +
-            '<button class="btn btn-danger">' +
-            '<i class="fas fa-trash-o"></i> ' +
-            '<span class="d-none d-sm-inline"> Delete </span> </button>';
-        li.classList.add("list-group-item");
-        ul.appendChild(li);
-    }
-    document.getElementById('todos').appendChild(ul);
-}
-show();
-*/
+//
+// function getTodos() {
+//     var todos = [];
+//     var todos_str = localStorage.getItem('todo');
+//     if(todos_str !== null)
+//         todos = JSON.parse(todos_str);
+//     return todos;
+// }
+//
+// function add() {
+//     var task = document.getElementById('task').value;
+//     if(task.trim() == ''){
+//         document.getElementById('message').style.display = 'block';
+//         return false;
+//     } else {
+//         document.getElementById('message').style.display = 'none';
+//     }
+//     var todos = getTodos();
+//     todos.push({task: task});
+//     document.getElementById('task').value = '';
+//     localStorage.setItem('todo',JSON.stringify(todos));
+//     show();
+// }
+//
+//
+// function show() {
+//     document.getElementById('todos').innerText = '';
+//     var todos = getTodos();
+//     var ul = document.createElement('ul');
+//     ul.classList.add("list-group");
+//     for(var i=0; i<todos.length; i++){
+//         var li = document.createElement('li');
+//         li.innerHTML  = '<li>' + todos[i].task + '</li>' +
+//             '<button class="btn btn-danger">' +
+//             '<i class="fas fa-trash-o"></i> ' +
+//             '<span class="d-none d-sm-inline"> Delete </span> </button>';
+//         li.classList.add("list-group-item");
+//         ul.appendChild(li);
+//     }
+//     document.getElementById('todos').appendChild(ul);
+// }
+// show();
+//
 
 
 
@@ -93,7 +92,7 @@ show();
 //============================================
 
 
-/*function getTodos() {
+function getTodos() {
     var todos = [];
     var todos_str = localStorage.getItem('todo');
     if(todos_str !== null)
@@ -133,10 +132,11 @@ function show() {
     ul.classList.add("list-group");
     for(var i=0; i<todos.length; i++){
         var li = document.createElement('li');
-        li.innerHTML  = '<li>' + todos[i].task + '</li>' +
+        li.innerHTML  = '<li contenteditable=\"true\" id=\"id' + i+1+ '\" onclick=\"StrikeThrough(this.id)\">' + todos[i].task + '</li>' +
             '<button class="btn btn-danger" id="' + i + '">' +
             '<i class="fa fa-trash-o"></i> ' +
-            '<span class="d-none d-sm-inline"> Delete </span> </button>';
+            '<span class="d-none d-sm-inline"> Delete </span> </button>'
+
         li.classList.add("list-group-item");
         if(todos[i].isDone)
             li.classList.add("done");
@@ -162,7 +162,7 @@ function isDone(e) {
     localStorage.setItem('todo',JSON.stringify(todos));
     show();
 }
-show();*/
+show();
 
 
 
@@ -173,15 +173,19 @@ show();*/
 //============================================
 
 /*
-
 CLASS ACTIVITY (HOME WORK) :
-
 1- Enable State of todos by clicking on the text completed, started etc
 HINT: use text-decoration:line-through; property of CSS
-
 2- Enable Editing todos in text field to update text
-
-
-
 */
 
+
+
+function StrikeThrough(clickedID){
+
+    var li = document.getElementById(clickedID);
+    if(li.classList.contains("done"))
+        li.classList.remove("done");
+    else
+        li.classList.add("done")
+}
