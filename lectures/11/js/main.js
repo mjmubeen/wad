@@ -175,7 +175,7 @@ show();
 /*
 CLASS ACTIVITY (HOME WORK) :
 1- Enable State of todos by clicking on the text completed, started etc
-HINT: use text-decoration:line-through; property of CSS
+HINT: use text-decoration:line-through; property of v CSS
 2- Enable Editing todos in text field to update text
 */
 
