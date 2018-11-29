@@ -19,7 +19,22 @@ var questions = [{
         "for",
         "none of the above"],
     correctAnswer : 1
-}];
+},{
+    question : "What was the old name of Sri Lanka?",
+        choices : [ "Burma",
+        "Ceylon",
+    "Batavia",
+    "Rawan Lanka"],
+    correctAnswer : 2
+},{
+        question : "Who is called the father of Modern Psychology?",
+        choices : [ "Sigmund Freud",
+            "Ibn-e-Khaldoom",
+            "Adams Smith",
+            "Charless Darwin"],
+        correctAnswer : 1
+    }
+];
 
 var currentQuestion = 0;
 var correctAnswers = 0;
@@ -27,11 +42,31 @@ var quizOver = false;
 displayCurrentQuestion();
 document.getElementById("quiz-message").style.display = 'none';
 function displayNext() {
-    /*Write your code here */
+    list.innerHTML = "";
+    var Answer = document.querySelector("input[type = radio]:checked");
+    if(Answer == null) {
+        var msg_relay = document.getElementById("quiz-message");
+        msg_relay.style.color = 'red';
+        msg_relay.style.display = "block";
+        msg_relay.innerText = "No option was Selected";
+    }
+    else if(Answer == question[currentQuestion].correctAnswer ) {
+        correctAnswers++;
+        currentQuestion++;
+        displayCurrentQuestion();
+    }
+    else {
+        currentQuestion++;
+        displayCurrentQuestion();
+    }
 }
 
 function displayCurrentQuestion() {
-    /*Write your code here */
+
+    document.getElementById("question").innerHTML = questions[currentQuestion].question;
+    for (var i = 0; i< questions[currentQuestion].choices.length; i++){
+        document.getElementById("choice-list").innerHTML+='<li><input type = "radio" name="ans">'+ questions[currentQuestion].choices[i] + '</li>';
+    }
 }
 
 function resetQuiz() {
