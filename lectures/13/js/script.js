@@ -25,14 +25,14 @@ var questions = [{
         "Ceylon",
     "Batavia",
     "Rawan Lanka"],
-    correctAnswer : 2
+    correctAnswer : 1
 },{
         question : "Who is called the father of Modern Psychology?",
         choices : [ "Sigmund Freud",
             "Ibn-e-Khaldoom",
             "Adams Smith",
             "Charless Darwin"],
-        correctAnswer : 1
+        correctAnswer : 0
     }
 ];
 
@@ -40,32 +40,45 @@ var currentQuestion = 0;
 var correctAnswers = 0;
 var quizOver = false;
 displayCurrentQuestion();
-document.getElementById("quiz-message").style.display = 'none';
+
 function displayNext() {
-    list.innerHTML = "";
-    var Answer = document.querySelector("input[type = radio]:checked");
-    if(Answer == null) {
-        var msg_relay = document.getElementById("quiz-message");
-        msg_relay.style.color = 'red';
-        msg_relay.style.display = "block";
-        msg_relay.innerText = "No option was Selected";
+    if(currentQuestion + 1 < questions.length)
+    {
+        var Answer = document.querySelector("input[type = radio]:checked");
+        if(Answer == null) {
+            var msg = document.getElementById("quiz-message");
+            msg.style.color = 'red';
+            msg.style.display = "block";
+            msg.innerText = "No option was Selected";
+        }
+        else {
+            var i;
+            for (i = 0; i < questions[currentQuestion].choices.length; i++) {
+                if (document.getElementById("i").checked) {
+                   break;
+                }
+            }
+            if (i === questions[currentQuestion].correctAnswer) {
+                correctAnswers++;
+            }
+            currentQuestion++;
+            displayCurrentQuestion();
+        }
     }
-    else if(Answer == question[currentQuestion].correctAnswer ) {
-        correctAnswers++;
-        currentQuestion++;
-        displayCurrentQuestion();
-    }
-    else {
-        currentQuestion++;
-        displayCurrentQuestion();
+    else
+    {
+        displayScore();
+        quizOver = true;
     }
 }
 
 function displayCurrentQuestion() {
-
+    document.getElementById("question").innerHTML = " ";
+    document.getElementById("choice-list").innerHTML = " ";
+    document.getElementById("quiz-message").innerHTML = " ";
     document.getElementById("question").innerHTML = questions[currentQuestion].question;
     for (var i = 0; i< questions[currentQuestion].choices.length; i++){
-        document.getElementById("choice-list").innerHTML+='<li><input type = "radio" name="ans">'+ questions[currentQuestion].choices[i] + '</li>';
+        document.getElementById("choice-list").innerHTML+='<li><input type = "radio" id="i" name="answers" value = i>'+ questions[currentQuestion].choices[i] + '</li>';
     }
 }
 
@@ -74,10 +87,12 @@ function resetQuiz() {
     correctAnswers = 0;
     hideScore();
 }
+
 function displayScore() {
     document.getElementById("result").innerHTML = "you scored: " + correctAnswers + " out of: " + questions.length;
     document.getElementById("result").style.display = 'block';
 }
+
 function hideScore() {
     document.getElementById("result").style.display = 'none';
 }
