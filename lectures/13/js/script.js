@@ -61,16 +61,19 @@ function displayNext() {
     {
         displayScore();
         quizOver = true;
+        currentQuestion  = 0;
+        displayScore();
     }
 }
 
 function displayCurrentQuestion() {
+    hideScore();
     document.getElementById("question").innerHTML = " ";
     document.getElementById("choice-list").innerHTML = " ";
     document.getElementById("quiz-message").innerHTML = " ";
     document.getElementById("question").innerHTML = questions[currentQuestion].question;
     for (var i = 0; i< questions[currentQuestion].choices.length; i++){
-        document.getElementById("choice-list").innerHTML+=`<li><input type = "radio" name='q' value = "' + i + "'>${questions[currentQuestion].choices[i]}</li>`;
+        document.getElementById("choice-list").innerHTML+=`<li><input type = "radio" name='q' value = '' + i + "">${questions[currentQuestion].choices[i]}</li>`;
     }
 }
 
@@ -86,5 +89,5 @@ function displayScore() {
 }
 
 function hideScore() {
-    document.getElementById("result").style.display = 'none';
+    document.getElementById("result").innerHTML = " ";
 }
