@@ -44,26 +44,18 @@ displayCurrentQuestion();
 function displayNext() {
     if(currentQuestion + 1 < questions.length)
     {
-        var Answer = document.querySelector("input[type = radio]:checked");
+        var Answer = document.querySelector("input[name = 'q']:checked");
         if(Answer == null) {
             var msg = document.getElementById("quiz-message");
             msg.style.color = 'red';
             msg.style.display = "block";
             msg.innerText = "No option was Selected";
         }
-        else {
-            var i;
-            for (i = 0; i < questions[currentQuestion].choices.length; i++) {
-                if (document.getElementById("i").checked) {
-                   break;
-                }
-            }
-            if (i === questions[currentQuestion].correctAnswer) {
+        else if (Answer.value == questions[currentQuestion].correctAnswer) {
                 correctAnswers++;
-            }
-            currentQuestion++;
-            displayCurrentQuestion();
         }
+        currentQuestion++;
+        displayCurrentQuestion();
     }
     else
     {
@@ -78,7 +70,7 @@ function displayCurrentQuestion() {
     document.getElementById("quiz-message").innerHTML = " ";
     document.getElementById("question").innerHTML = questions[currentQuestion].question;
     for (var i = 0; i< questions[currentQuestion].choices.length; i++){
-        document.getElementById("choice-list").innerHTML+='<li><input type = "radio" id="i" name="answers" value = i>'+ questions[currentQuestion].choices[i] + '</li>';
+        document.getElementById("choice-list").innerHTML+=`<li><input type = "radio" name='q' value = "' + i + "'>${questions[currentQuestion].choices[i]}</li>`;
     }
 }
 
