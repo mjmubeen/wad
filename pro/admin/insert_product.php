@@ -1,6 +1,5 @@
 <?php
-include_once("../server/functions.php");
-require_once("../server/db_connection.php");
+require_once "db_connection.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,13 +42,11 @@ require_once("../server/db_connection.php");
                     </div>
                     <select class="form-control" id="pro_cat" name="pro_cat">
                         <option>Select Category</option>
-                        <?php
-                        $rows = getCategories();
-                        for ($i = 0; $i < mysqli_num_rows($rows); $i++) {
-                            $row = mysqli_fetch_assoc($rows);
-                            echo "<option>" . $row['name'] . "</option>" ;
-                        }
-                        ?>
+                        <option>Mobile</option>
+                        <option>Laptop</option>
+                        <option>Tablet</option>
+                        <option>Watch</option>
+                        <option>Camera</option>
                     </select>
                 </div>
             </div>
@@ -65,13 +62,12 @@ require_once("../server/db_connection.php");
                     </div>
                     <select class="form-control" id="pro_brand" name="pro_brand">
                         <option>Select Brand</option>
-                        <?php
-                        $rows = getBrands();
-                        for ($i = 0; $i < mysqli_num_rows($rows); $i++) {
-                            $row = mysqli_fetch_assoc($rows);
-                            echo "<option>" . $row['name'] . "</option>" ;
-                        }
-                        ?>
+                        <option>Apple</option>
+                        <option>Samsung</option>
+                        <option>Oppo</option>
+                        <option>Dell</option>
+                        <option>HP</option>
+                        <option>Sony</option>
                     </select>
                 </div>
             </div>
@@ -133,4 +129,4 @@ require_once("../server/db_connection.php");
     </form>
 </div>
 </body>
-</html
+</html>
