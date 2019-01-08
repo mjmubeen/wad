@@ -1,5 +1,5 @@
 <?php
-require_once "admin/db_connection.php";
+require_once "db_connection.php";
 if(!isset($_POST['insert_products']))
 {
     $pro_title =isset($_POST['pro_title']) ? $_POST['pro_title'] : '';
