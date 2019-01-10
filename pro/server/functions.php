@@ -1,22 +1,6 @@
 <?php
-require_once "admin/db_connection.php";
-if(!isset($_POST['insert_products']))
-{
-    $pro_title =isset($_POST['pro_title']) ? $_POST['pro_title'] : '';
-    $pro_cat =isset($_POST['pro_cat']) ? $_POST['pro_cat'] : '';
-    $pro_brand =isset($_POST['pro_brand']) ? $_POST['pro_brand'] : '';
-    $pro_price =isset($_POST['pro_price']) ? $_POST['pro_price'] : '';
-    $pro_desc =isset($_POST['pro_desc']) ? $_POST['pro_desc'] : '';
-    $pro_keywords =isset($_POST['pro_kw']) ? $_POST['pro_kw'] : '';
-    $insertQuery = "insert into products(pro_title,pro_cat,pro_brand,pro_price,pro_desc,pro_keywords)
-    values('$pro_title','$pro_cat','$pro_brand','$pro_price','$pro_desc','$pro_keywords');";
-    //echo $insertQuery;
-    $res = mysqli_query($con,$insertQuery);
-    if(!$res)
-    {
-        echo "Not Executed";
-    }
-}
+require_once "db_connection.php";
+
 function getCats(){
     global $con;
     $getCatsQuery = "select * from categories";
@@ -24,7 +8,7 @@ function getCats(){
     while($row = mysqli_fetch_assoc($getCatsResult)){
         $cat_id = $row['cat_id'];
         $cat_title = $row['cat_title'];
-        echo "<option value='$cat_id'>$cat_title</option>";
+        echo "<li><a class='nav-link'  href='index.php?cat=$cat_id'>$cat_title</a></li>";
     }
 }
 function getBrands(){
@@ -34,14 +18,33 @@ function getBrands(){
     while($row = mysqli_fetch_assoc($getBrandsResult)){
         $brand_id = $row['brand_id'];
         $brand_title = $row['brand_title'];
-        echo "<option value='$brand_id'>$brand_title</option>";
+        echo "<li><a class='nav-link'  href='index.php?brand=$brand_id'>$brand_title</a></li>";
     }
 }
 
 function getPro(){
     global $con;
-    $getProQuery = "select * from products order by RAND();";
+    $getProQuery = '';
+    if(!isset($_GET['cat']) && !isset($_GET['brand']) && !isset($_GET['search'])){
+        $getProQuery = "select * from products order by RAND();";
+    }
+    else if(isset($_GET['cat'])){
+        $pro_cat_id = $_GET['cat'];
+        $getProQuery = "select * from products where pro_cat = '$pro_cat_id'";
+    }
+    else if(isset($_GET['brand'])){
+        $pro_brand_id = $_GET['brand'];
+        $getProQuery = "select * from products where pro_brand = '$pro_brand_id'";
+    }
+    else if(isset($_GET['search'])){
+        $user_query = $_GET['search'];
+        $getProQuery = "select * from products where pro_keywords like '%$user_query%'";
+    }
     $getProResult = mysqli_query($con,$getProQuery);
+    $count_pro = mysqli_num_rows($getProResult);
+    if($count_pro==0){
+        echo "<h4 class='alert-warning align-center my-2 p-2'> No Product found in selected criteria </h4>";
+    }
     while($row = mysqli_fetch_assoc($getProResult)){
         $pro_id = $row['pro_id'];
         $pro_title = $row['pro_title'];
