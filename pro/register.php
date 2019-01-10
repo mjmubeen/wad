@@ -98,7 +98,7 @@ require "server/functions.php";
         <form action="register.php" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="d-none d-sm-block col-sm-3 col-md-4 col-lg-2 col-xl-2 mt-auto">
-                    <label for="c_name" class="float-md-right">  Name:</label>
+                    <label for="c_name" class="float-md-right">  Date:</label>
                 </div>
                 <div class="col-sm-9 col-md-8 col-lg-4 col-xl-4">
                     <div class="input-group">
@@ -106,7 +106,19 @@ require "server/functions.php";
                             <div class="input-group-text"><i class="fas fa-user"></i></div>
                         </div>
                         <input type="text" class="form-control" id="c_name" name="c_name" placeholder="Enter your name"
-                               required pattern="abc">
+                               required pattern="[0][1-9]|[1-9]|[1-2][0-9]|[3][0-1] ">
+                    </div>
+                </div>
+                <div class="d-none d-sm-block col-sm-3 col-md-4 col-lg-2 col-xl-2 mt-auto">
+                    <label for="c_name" class="float-md-right">  Year:</label>
+                </div>
+                <div class="col-sm-9 col-md-8 col-lg-4 col-xl-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-user"></i></div>
+                        </div>
+                        <input type="text" class="form-control" id="c_name" name="c_name" placeholder="Enter your name"
+                               required pattern="19[5-9][0-9]|200[0-1]">
                     </div>
                 </div>
                 <div class="d-none d-sm-block col-sm-3 col-md-4 col-lg-2 col-xl-2 mt-auto">

@@ -29,6 +29,7 @@ if(isset($_POST['insert_pro'])){
     <title>Insert Product</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers|Old+Standard+TT">
     <style>
@@ -158,4 +159,3 @@ if(isset($_POST['insert_pro'])){
 </div>
 </body>
 </html>
-
