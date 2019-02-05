@@ -9,13 +9,12 @@
         {
             var str = document.getElementById("t1").value;
             var errormsg4 = document.getElementById("d1");
-            if (str.length == 0) {
-                //errormsg4.innerHTML = "";
+            if (str.length === 0) {
                 return;
             } else {
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
+                    if (this.readyState === 4 && this.status === 200) {
                         //errormsg4.innerHTML += "<tr>"+ "<td>" + 2 + "</td>" +"<td>"+this.response+"</td>" + "<td align='center'>" + "More Info" + "</td>" + "</tr>";
                         /*errormsg4.innerHTML = this.responseText;*/
                         errormsg4.innerHTML += this.response;
