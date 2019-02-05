@@ -1,0 +1,14 @@
+.myclass1
+{
+    color: black;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    align-items: center;
+}
+.neo {
+    font-size: 15px;
+    color: #000000;
+    line-height: 2.6em;
+    margin: 5px 10px 10px 20px;
+}
